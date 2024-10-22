@@ -1,4 +1,4 @@
-package main
+package concurrency_task
 
 import (
 	"fmt"
