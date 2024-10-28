@@ -53,8 +53,6 @@ func SingleHash(in, out chan interface{}) {
 			data = <-crc32Chanel
 			md5Data = <-crc32Md5Chanel
 
-			fmt.Println("SingleHash result ", data+"~"+md5Data)
-
 			out <- data + "~" + md5Data
 
 		}(strData, md5Data, out)
@@ -93,7 +91,6 @@ func MultiHash(in, out chan interface{}) {
 			wg6.Wait()
 			finalResult := strings.Join(arrayResults, "")
 			out <- finalResult
-			fmt.Println("MultiHash result ", finalResult)
 		}(singleHashhashData, &wgMultiHash)
 
 	}
@@ -110,6 +107,5 @@ func CombineResults(in, out chan interface{}) {
 	sort.Strings(results)
 	finalResult := strings.Join(results, "_")
 	out <- finalResult
-	fmt.Println("CombineResults result ", finalResult)
 
 }
